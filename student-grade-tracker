@@ -1,0 +1,66 @@
+print("================================")
+print("Student Grade Tracker CLI")
+print("================================")
+
+print("1. Add Course")
+print("2. View Courses")
+print("3. Add Grade")
+print("4. View Results")
+print("5. Calculate Average")
+print("6. Exit")
+
+student_info = {
+    "name": "Benjamin",
+    "age": "16",
+    "courses": {"MTS101", "PHY101","PHY107", "STA111", "CHM101", "GST111", "BIO101", "COS101"},
+    "grades": {
+        "MTS101": 83,
+        "PHY101": 78,
+        "PHY107": 80,
+        "STA111": 81,
+        "CHM101": 85,
+        "GST111": 65,
+        "BIO101": 88,
+        "COS101": 92,
+    }
+}
+
+def add_course():
+    option = input("Pick an option")
+    if option == "1":
+        course_option = input("What course would you like to add").upper()
+        # Check if it already exists to prevent overwriting
+        if course_option in student_info["courses"]:
+            print(f"'{course_option}' is already one your courses!")
+        else:
+            student_info["courses"].add(course_option)
+            print(f"Successfully added {course_option}!")
+
+def view_courses():
+    option = input("Pick an option")
+    if option == "2":
+        for course in student_info["courses"]:
+            print(course)
+
+def add_grade():
+    option = input("Pick an option")
+    if option == "3":
+        pass # Add grade addition functionality
+
+def view_results():
+    option = input("Pick an option")
+    if option == "4":
+        pass # Add result viewing functionality
+
+def calculate_average():
+    option = input("Pick an option")
+    if option == "5":
+        pass # Add average calculation functionality
+
+def exit():
+    option = input("Pick an option")
+    if option == "6":
+        pass # Add exit functionality
+
+add_course()
+view_courses()
