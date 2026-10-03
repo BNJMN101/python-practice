@@ -1,13 +1,36 @@
-print("================================")
-print("Student Grade Tracker CLI")
-print("================================")
+def main():
+    # Runs the menu continously until the user chooses to exit
+    while True:
+        # Display the CLI header and other options
+        print("\n================================")
+        print("Student Grade Tracker CLI")
+        print("================================")
+        print("1. Add Course")
+        print("2. View Courses")
+        print("3. Add Grade")
+        print("4. View Results")
+        print("5. Calculate Average")
+        print("6. Exit")
 
-print("1. Add Course")
-print("2. View Courses")
-print("3. Add Grade")
-print("4. View Results")
-print("5. Calculate Average")
-print("6. Exit")
+        # Capture the user's menu choice
+        choice = input("Choose an option (1-6): ")
+
+        # Route the choice to the corresponding function
+        if choice == "1":
+             add_course()
+        elif choice == "2":
+             view_courses()
+        elif choice == "3":
+             add_grade()
+        elif choice == "4":
+             view_results()
+        elif choice == "5":
+             calculate_average()
+        elif choice == "6":
+             print("Exiting program. Goodbye!")
+             break #Stops the loop and ends the program
+        else:
+             print("invalid selection. Please choose a number from 1 to 6.")
 
 student_info = {
     "name": "Benjamin",
@@ -26,8 +49,6 @@ student_info = {
 }
 
 def add_course():
-    option = input("Pick an option")
-    if option == "1":
         course_option = input("What course would you like to add").upper()
         # Check if it already exists to prevent overwriting
         if course_option in student_info["courses"]:
@@ -37,30 +58,46 @@ def add_course():
             print(f"Successfully added {course_option}!")
 
 def view_courses():
-    option = input("Pick an option")
-    if option == "2":
         for course in student_info["courses"]:
             print(course)
 
 def add_grade():
-    option = input("Pick an option")
-    if option == "3":
-        pass # Add grade addition functionality
+    # 1. Ask the user which course they want to grade and format it to uppercase
+    selected_course_code = input("Enter course code: ").upper()
+
+    # Verify that the course exists in the student's enrolled courses set
+    if selected_course_code in student_info["courses"]:
+
+        # Prompt for the score and conver the input string to an integer
+        selected_grade = int(input("Enter course grade: "))
+
+        # Assign the grade to the dictionary using the course code as the key
+        student_info["grades"][selected_course_code] = selected_grade
+
+        # Confirm to the user that the grade was succesfully recorded
+        print(f"Successfully added {selected_grade} for {selected_course_code}")
+
+    else:
+        # If the course code isn't in the set, advice adding the course first.
+        print(f"{selected_course_code} is not in your courses. Add the course first!")
 
 def view_results():
-    option = input("Pick an option")
-    if option == "4":
-        pass # Add result viewing functionality
+        print("\n================================")
+        print("Student Results")
+        print("================================")
+        if not student_info["grades"]:
+            print("No grades recorded yet")
+        else:
+             for course, grade in student_info["grades"].items():
+                  print(f"{course}: {grade}")
 
 def calculate_average():
-    option = input("Pick an option")
-    if option == "5":
-        pass # Add average calculation functionality
+        grades = student_info["grades"].values()
+        if not grades:
+            print("No grades available to calculate average.")
+        else:
+            avg = sum(grades) / len(grades)
+            print(f"Average Grade {avg:.2f}")
+        
 
-def exit():
-    option = input("Pick an option")
-    if option == "6":
-        pass # Add exit functionality
-
-add_course()
-view_courses()
+main()
