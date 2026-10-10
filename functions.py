@@ -1,9 +1,9 @@
-# username = input("What's your name?")
-# def greet(name): #The name inaide the parenthesis is called a parameter
-#     print("Hello! Welcome to Python! 🐍", name) 
+username = input("What's your name?")
+def greet(name): #The name inaide the parenthesis is called a parameter
+    print("Hello! Welcome to Python! 🐍", name) 
 
 
-# greet(username)
+greet(username)
 
 # def introduce(name, age, course):
 #     print("Hey, I'm", name, "I'm", age, " years old, and I study", course)
@@ -73,7 +73,7 @@ def create_student(name, age, course):
     return f"Name: {name}\nAge: {age}\nCourse: {course}"
 
 def get_student_info():
-    return create_student("Benjamin", calculate_age(2026, 2010), "Computer Science")
+    return create_student("Benjamin", calculate_age(2030, 2010), "Computer Science")
 
 student = get_student_info()
 print(student)
